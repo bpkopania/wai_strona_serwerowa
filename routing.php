@@ -1,7 +1,10 @@
 <?php
 
 $routing = [
-    '/' => 'products',
+    '/' => 'home',
+    '/home' => 'home',
+    '/licenses' => 'licenses',
+
     '/products' => 'products',
     '/view' => 'product',
     '/edit' => 'edit',
@@ -11,4 +14,6 @@ $routing = [
     '/cart/add' => 'add_to_cart',
     
     '/galery' => 'galery',
+    '/sender' => 'sender',
+    '/send' => 'send_to_server'
 ];

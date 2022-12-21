@@ -1,10 +1,38 @@
 <?php
 require_once 'business.php';
 require_once 'controller_utils.php';
+require_once 'photo.php';
+
+function home()
+{
+    return 'index';
+}
+
+function licenses()
+{
+    return 'licenses';
+}
 
 function galery(&$model)
 {
     return 'galery';
+}
+
+function sender(&$model)
+{
+    return 'sender_view';
+}
+
+function send_to_server()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+        upload_photo();
+
+        return 'redirect:' . $_SERVER['HTTP_REFERER'];
+    }
+
+    
 }
 
 function products(&$model)
