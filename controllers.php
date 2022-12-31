@@ -16,15 +16,17 @@ function licenses()
 
 function galery(&$model)
 {
+    $photos = NULL;
+    $model['photos'] = $photos;
     return 'galery';
 }
 
-function sender(&$model)
+function sender()
 {
     return 'sender_view';
 }
 
-function send_to_server(&$model)
+function send_to_server()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
@@ -34,7 +36,7 @@ function send_to_server(&$model)
     }
 }
 
-function registration(&$model)
+function registration()
 {
     $response = register();
     $_SESSION['status'] = $response*100;
@@ -42,7 +44,7 @@ function registration(&$model)
     // return 'sender_view';
 }
 
-function logining(&$model)
+function logining()
 {
     $response = login();
     $_SESSION['status'] = $response*100*100;

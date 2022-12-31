@@ -126,7 +126,7 @@
                         <input type=\"submit\" value=\"Wyloguj się\">
                     </form>
                     </div>";
-                }   
+                }
             ?>
 
             

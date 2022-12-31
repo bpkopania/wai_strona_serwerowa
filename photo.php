@@ -25,14 +25,19 @@
                 //echo "poprawny format";
                 if($file['size']<=1*1024*1024)
                 {
-                    if(move_uploaded_file($tmp_path, $destiny))
+                    move_uploaded_file($tmp_path, $destiny);
+                    if($mime_type === 'image/jpeg')
                     {
-                        //echo "Upload przebiegł pomyślnie!\n";
+                        resize_image_jpg($file, $dir, $file_name);
+                        add_waterMark_jpg($file, $dir, $file_name);
+                    }
+                    else
+                    {
+                        resize_image_png($file, $dir, $file_name);
                     }
                 }
                 else
                 {
-                    //TODO
                     $status = 1;
                     //plik za duzy
                 }
@@ -40,13 +45,13 @@
             }
             else
             {
-                //TODO
                 $status += 10;
                 //zly format
             }
             if($file['size']>=1*1024*1024)
             {
                 $status += 1;
+                //plik za duzy
             }
         }
         
@@ -89,25 +94,33 @@
     function add_waterMark_jpg($photo, $dir, $name)
     {
         $waterMark = $_POST["waterMark"];
-        $textcolor = imagecolorallocate($photo, 255, 255, 255);
+        $im = imagecreate(100, 30);
+        $textcolor = imagecolorallocate($im, 255, 255, 255);
 
         $src = $dir . $name;
         $photo = imagecreatefromjpeg($src);
 
         if($waterMark != "")
         {
-            imagestring($photo, 5, 0, 0, 'Hello world!', $textcolor);
+            imagestring($photo, 5, 0, 0, $waterMark, $textcolor);
         }
 
-        $destiny = $dir . "mini_" . $name;
+        $destiny = $dir . "mark_" . $name;
 
         imagejpeg($photo, $destiny);
     }
 
     function store_photo($name, $photo)
     {
-        get_db();
+        $db = get_db();
         $title = $_POST["title"];
         $author = $_POST["author"];
+
+        $data=[
+            'name' => $name,
+            'title' => $title,
+            'author' => $author
+        ];
+        $db->photos->insertOne($data);
     }
 ?>
