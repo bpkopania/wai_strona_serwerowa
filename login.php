@@ -8,6 +8,8 @@
         $login=$_POST["login"];
         $mail=$_POST["mail"];
 
+        $status = 0;
+
         $db = get_db();
 
         if($password===$password_repeat)
@@ -23,9 +25,7 @@
                     'password' => $hash_psw
                 ]);
 
-
                 session_regenerate_id();
-                //$_SESSION['user_id'] = $user['_id'];
                 $_SESSION['username'] = $login;
 
                 header('Location: sender');
@@ -34,15 +34,18 @@
             else
             {
                 //USER ALREADY EXIST
+                $status = 1;
                 //TODO
             }
         }
+        return $status;
     }
 
     function login()
     {
         $password=$_POST["pswLogin"];
         $login=$_POST["loginLogin"];
+        $status=0;
 
         $db = get_db();
 
@@ -60,9 +63,11 @@
         else
         {
             //TODO
+            $status=1;
             //WRONG PASSWORD
         }
 
+        return $status;
     }
 
     function logout()

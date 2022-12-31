@@ -24,33 +24,33 @@ function sender(&$model)
     return 'sender_view';
 }
 
-function send_to_server()
+function send_to_server(&$model)
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        upload_photo();
-
+        $response = upload_photo();
+        $model['status'] = $response;
         return 'redirect:' . $_SERVER['HTTP_REFERER'];
     }
-
-    
 }
 
 function registration(&$model)
 {
-    $resposne = register();
+    $response = register();
+    $model['status'] = $response*100;
     return 'redirect:' . $_SERVER['HTTP_REFERER'];
     // return 'sender_view';
 }
 
 function logining(&$model)
 {
-    $resposne = login();
+    $response = login();
+    $model['status'] = $response*100*100;
     return 'redirect:' . $_SERVER['HTTP_REFERER'];
     // return 'sender_view';
 }
 
-function logingout(&$model)
+function logingout()
 {
     logout();
     return 'redirect:' . $_SERVER['HTTP_REFERER'];

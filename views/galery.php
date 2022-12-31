@@ -12,7 +12,7 @@
         <?php include_once '../views/static/header.php'?>
 
         <main>
-            <section class="animated-grid">
+            <!-- <section class="animated-grid">
                 <div class="card">aaa</div>
                 <div class="card">aaa</div>
                 <div class="card">aaa</div>
@@ -26,7 +26,10 @@
                 <div class="card">aaa</div>
                 <div class="card">aaa</div>
                 <div class="card">aaa</div>
-              </section>
+              </section> -->
+              <?php
+                
+              ?>
         </main>
         
         <?php include_once '../views/static/footer.php'?>

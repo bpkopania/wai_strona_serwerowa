@@ -33,9 +33,14 @@
                     ?>
                     <input type="submit" value="Prześlij"/><br>
                 </form>
+                <?php
+                    if(isset($_SESSION['status']))
+                ?>
             </div>
 
             <?php
+            //errors for login is 10000
+            //errors for registration is 100
                 if(!isset($_SESSION['username']))
                 {
                     echo "
