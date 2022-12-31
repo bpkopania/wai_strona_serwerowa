@@ -14,40 +14,78 @@
         <main>
             <div class="form">
                 <form method="post" enctype="multipart/form-data" action="send">
+                    <label for="file">Plik:</label>
                     <input type="file" name="photo"/><br>
+                    <label for="waterMark">Znak Wodny:</label>
                     <input type="text" name="waterMark"/><br>
-                    <input type="hidden" name="login"/><br>
+                    <label for="title">Tytuł:</label>
+                    <input type="text" name="title"/><br>
+                    <?php
+                        if(!isset($_SESSION['username']))
+                        {
+                            echo '<label for="author">Autor:</label>
+                            <input type="text" name="author"/><br>';
+                        }
+                        else
+                        {
+                            echo ' <input type="hidden" name="author" value="'.$_SESSION['username'].'"/>';
+                        }
+                    ?>
                     <input type="submit" value="Prześlij"/><br>
                 </form>
             </div>
 
-            <div class="login">
-            <p>Zaloguj się</p>
-                <form action="login.php" method="post">
-                    <label for="login">Login:</label>
-                    <input type="text" id="loginLogin" name="loginLogin">
+            <?php
+                if(!isset($_SESSION['username']))
+                {
+                    echo "
+                    <div class=\"login\">
+                        <p>Zaloguj się</p>
+                        <form action=\"login\" method=\"post\">
+                            <label for=\"login\">Login:</label>
+                            <input type=\"text\" id=\"loginLogin\" name=\"loginLogin\">
+                            <br>
+                            <label for=\"psw\">Hasło:</label>
+                            <input type=\"password\" id=\"pswLogin\" name=\"pswLogin\">
+                            <br>
+                            <input type=\"submit\" value=\"Zaloguj się\">
+                        </form>
+                        <br>
+                        <p>Zarejestruj się</p>
+                        <form action=\"register\" method=\"post\">
+                            <label for=\"mail\">E-mail:</label>
+                            <input type=\"text\" id=\"mail\" name=\"mail\">
+                            <br>
+                            <label for=\"login\">Login:</label>
+                            <input type=\"text\" id=\"login\" name=\"login\">
+                            <br>
+                            <label for=\"psw\">Hasło:</label>
+                            <input type=\"password\" id=\"psw\" name=\"psw\">
+                            <br>
+                            <label for=\"psw_r\">Powtórz Hasło:</label>
+                            <input type=\"password\" id=\"psw_r\" name=\"psw_r\">
+                            <br>
+                            <input type=\"submit\" value=\"Zaloguj się\">
+                        </form>
+                    </div>
+                    ";
+                }
+                else
+                {
+                    echo 
+                    "<div>
+                    <p>Witaj, ".
+                    $_SESSION['username'].
+                    "!</p>
                     <br>
-                    <label for="psw">Hasło:</label>
-                    <input type="password" id="pswLogin" name="pswLogin">
-                    <br>
-                    <input type="submit" value="Zaloguj się">
-                </form>
-                <br>
-                <p>Zarejestruj się</p>
-                <form action="register.php" method="post">
-                    <label for="login">Login:</label>
-                    <input type="text" id="login" name="login">
-                    <br>
-                    <label for="psw">Hasło:</label>
-                    <input type="password" id="psw" name="psw">
-                    <br>
-                    <label for="psw_r">Powtórz Hasło:</label>
-                    <input type="password" id="psw_r" name="psw_r">
-                    <br>
-                    <input type="submit" value="Zaloguj się">
-                    <input type="reset" value="Od nowa">
-                </form>
-            </div>
+                    <form action=\"logout\" method=\"post\">
+                        <input type=\"submit\" value=\"Wyloguj się\">
+                    </form>
+                    </div>";
+                }
+            ?>
+
+            
         </main>
         
         

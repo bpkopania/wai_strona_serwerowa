@@ -2,6 +2,7 @@
 require_once 'business.php';
 require_once 'controller_utils.php';
 require_once 'photo.php';
+require_once 'login.php';
 
 function home()
 {
@@ -33,6 +34,26 @@ function send_to_server()
     }
 
     
+}
+
+function registration(&$model)
+{
+    $resposne = register();
+    return 'redirect:' . $_SERVER['HTTP_REFERER'];
+    // return 'sender_view';
+}
+
+function logining(&$model)
+{
+    $resposne = login();
+    return 'redirect:' . $_SERVER['HTTP_REFERER'];
+    // return 'sender_view';
+}
+
+function logingout(&$model)
+{
+    logout();
+    return 'redirect:' . $_SERVER['HTTP_REFERER'];
 }
 
 function products(&$model)

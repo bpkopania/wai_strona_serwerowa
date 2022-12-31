@@ -4,6 +4,9 @@ $routing = [
     '/' => 'home',
     '/home' => 'home',
     '/licenses' => 'licenses',
+    '/register' => 'registration',
+    '/login' => 'logining',
+    '/logout' => 'logingout',
 
     '/products' => 'products',
     '/view' => 'product',
