@@ -119,6 +119,11 @@ nav a.active {
     background-color: #95d3cf;
 }
 
+.error
+{
+    color: red;
+}
+
 figcaption{
     font-size: 15px;
     text-align: center;

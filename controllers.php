@@ -29,7 +29,7 @@ function send_to_server(&$model)
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         $response = upload_photo();
-        $model['status'] = $response;
+        $_SESSION['status'] = $response;
         return 'redirect:' . $_SERVER['HTTP_REFERER'];
     }
 }
@@ -37,7 +37,7 @@ function send_to_server(&$model)
 function registration(&$model)
 {
     $response = register();
-    $model['status'] = $response*100;
+    $_SESSION['status'] = $response*100;
     return 'redirect:' . $_SERVER['HTTP_REFERER'];
     // return 'sender_view';
 }
@@ -45,7 +45,7 @@ function registration(&$model)
 function logining(&$model)
 {
     $response = login();
-    $model['status'] = $response*100*100;
+    $_SESSION['status'] = $response*100*100;
     return 'redirect:' . $_SERVER['HTTP_REFERER'];
     // return 'sender_view';
 }

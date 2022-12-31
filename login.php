@@ -29,13 +29,13 @@
                 $_SESSION['username'] = $login;
 
                 header('Location: sender');
-                exit;
+                return $status;
+                //exit;
             }
             else
             {
                 //USER ALREADY EXIST
                 $status = 1;
-                //TODO
             }
         }
         return $status;
@@ -58,11 +58,11 @@
             //$_SESSION['user_id'] = $user['_id'];
             $_SESSION['username'] = $login;
             header('Location: sender');
-            exit;
+            return $status;
+            //exit;
         }
         else
         {
-            //TODO
             $status=1;
             //WRONG PASSWORD
         }
@@ -87,7 +87,6 @@
         {
             return false;
         }
-        //TODO
     }
 
 ?>

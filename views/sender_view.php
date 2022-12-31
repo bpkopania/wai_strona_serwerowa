@@ -35,6 +35,22 @@
                 </form>
                 <?php
                     if(isset($_SESSION['status']))
+                    {
+                        $status = $_SESSION['status'];
+                        $status = $status%100;
+                        if($status != 0)
+                        {
+                            if($status%10 != 0)
+                            {
+                                echo '<div class="error">Plik jest za duży. Maksymalny rozmiar pliku to 1MB.</div>';
+                            }
+                            $status=$status-$status%10;
+                            if($status != 0)
+                            {
+                                echo '<div class="error">Niepoprawny format pliku. Plik musi być jpg lub png.</div>';
+                            }
+                        }
+                    }
                 ?>
             </div>
 
@@ -54,7 +70,19 @@
                             <input type=\"password\" id=\"pswLogin\" name=\"pswLogin\">
                             <br>
                             <input type=\"submit\" value=\"Zaloguj się\">
-                        </form>
+                        </form>";
+                    if(isset($_SESSION['status']))
+                    {
+                        $status = $_SESSION['status'];
+                        $temp = $status%10000;
+                        $status = $status - $temp;
+                        if($status != 0)
+                        {
+                            echo '<div class="error">Niepoprawny login lub hasło</div>';
+                        }
+                    }    
+                    
+                    echo "
                         <br>
                         <p>Zarejestruj się</p>
                         <form action=\"register\" method=\"post\">
@@ -71,9 +99,20 @@
                             <input type=\"password\" id=\"psw_r\" name=\"psw_r\">
                             <br>
                             <input type=\"submit\" value=\"Zaloguj się\">
-                        </form>
-                    </div>
-                    ";
+                        </form>";
+                    if(isset($_SESSION['status']))
+                    {
+                        $status = $_SESSION['status'];
+                        $temp = $status%100;
+                        $status = $status - $temp;
+                        $status = $status/100;
+                        if($status%100 != 0)
+                        {
+                            print_r($_SESSION);
+                            echo '<div class="error">Ta nazwa użytkownika jest już zajęta</div>';
+                        }
+                    }  
+                    echo"</div>";
                 }
                 else
                 {
@@ -87,7 +126,7 @@
                         <input type=\"submit\" value=\"Wyloguj się\">
                     </form>
                     </div>";
-                }
+                }   
             ?>
 
             
