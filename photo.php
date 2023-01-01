@@ -34,6 +34,7 @@
                     else
                     {
                         resize_image_png($file, $dir, $file_name);
+                        add_waterMark_jpg($file, $dir, $file_name);
                     }
                 }
                 else
@@ -41,7 +42,7 @@
                     $status = 1;
                     //plik za duzy
                 }
-                
+                store_photo($file_name,$file);
             }
             else
             {
@@ -110,6 +111,25 @@
         imagejpeg($photo, $destiny);
     }
 
+    function add_waterMark_png($photo, $dir, $name)
+    {
+        $waterMark = $_POST["waterMark"];
+        $im = imagecreate(100, 30);
+        $textcolor = imagecolorallocate($im, 255, 255, 255);
+
+        $src = $dir . $name;
+        $photo = imagecreatefrompng($src);
+
+        if($waterMark != "")
+        {
+            imagestring($photo, 5, 0, 0, $waterMark, $textcolor);
+        }
+
+        $destiny = $dir . "mark_" . $name;
+
+        imagepng($photo, $destiny);
+    }
+
     function store_photo($name, $photo)
     {
         $db = get_db();
@@ -119,8 +139,37 @@
         $data=[
             'name' => $name,
             'title' => $title,
-            'author' => $author
+            'author' => $author,
+            'private' => false
         ];
         $db->photos->insertOne($data);
+    }
+
+    function get_all_photos()
+    {
+        $db = get_db();
+        $photos = $db->photos->find();
+        return $photos;
+    }
+
+    function get_paged_photos($page)
+    {
+        $db = get_db();
+
+        $pageSize = 3;
+
+        $opts = [
+        'skip' => ($page - 1) * $pageSize,
+        'limit' => $pageSize
+        ];
+        $photos = $db->photos->find([], $opts);
+        
+        return $photos;
+    }
+
+    function delete_photos()
+    {
+        $db = get_db_admin();
+        $db->photos->drop();
     }
 ?>

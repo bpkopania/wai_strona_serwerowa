@@ -7,6 +7,7 @@ $routing = [
     '/register' => 'registration',
     '/login' => 'logining',
     '/logout' => 'logingout',
+    // 'favorite' => 'add_favorite',
 
     '/products' => 'products',
     '/view' => 'product',

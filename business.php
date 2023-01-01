@@ -18,6 +18,20 @@ function get_db()
     return $db;
 }
 
+function get_db_admin()
+{
+    $mongo = new MongoDB\Client(
+        "mongodb://localhost:27017/wai",
+        [
+            'username' => 'admin',
+            'password' => 'p@ssw0rd',
+        ]);
+
+    $db = $mongo->wai;
+
+    return $db;
+}
+
 function get_products()
 {
     $db = get_db();

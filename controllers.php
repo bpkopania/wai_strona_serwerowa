@@ -16,10 +16,28 @@ function licenses()
 
 function galery(&$model)
 {
-    $photos = NULL;
+    if(isset($_GET['page']))
+    {
+        $page=$_GET['page'];
+    }
+    else
+    {
+        $page = 1;
+    }
+    
+    $photos = get_paged_photos($page);
+    //$photos = get_all_photos();
     $model['photos'] = $photos;
+    $model['page'] = 1;
     return 'galery';
 }
+
+// function add_favorite()
+// {
+//     // echo 'weszlo w to';
+//     // exit;
+//     return 'redirect:' . $_SERVER['HTTP_REFERER'];
+// }
 
 function sender()
 {

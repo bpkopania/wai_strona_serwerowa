@@ -108,7 +108,6 @@
                         $status = $status/100;
                         if($status%100 != 0)
                         {
-                            print_r($_SESSION);
                             echo '<div class="error">Ta nazwa użytkownika jest już zajęta</div>';
                         }
                     }  

@@ -12,7 +12,7 @@
 
         $db = get_db();
 
-        if($password===$password_repeat)
+        if($password===$password_repeat && $password!='' && $login!='' && $mail!='')
         {
             if(check_user($login) == false)
             {
@@ -89,4 +89,16 @@
         }
     }
 
+    function get_all_users()
+    {
+        $db = get_db();
+        $photos = $db->photos->find();
+        return $photos;
+    }
+
+    function delete_users()
+    {
+        $db = get_db_admin();
+        $db->photos->drop();
+    }
 ?>
