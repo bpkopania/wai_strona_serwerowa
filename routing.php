@@ -8,6 +8,8 @@ $routing = [
     '/login' => 'logining',
     '/logout' => 'logingout',
     // 'favorite' => 'add_favorite',
+    '/next' => 'nextPage',
+    '/previous' => 'previousPage',
 
     '/products' => 'products',
     '/view' => 'product',

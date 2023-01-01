@@ -13,18 +13,6 @@
 
         <main>
             <?php
-
-            function add($a,$b)
-            {
-                return $a+$b;
-            }
-            // $db=get_db();
-            // $users=$db->users->find();
-            // foreach($users as $user)
-            // {
-            //     print_r($user);
-            //     echo '<br>';
-            // }
             if($photos==NULL)
             {
                 echo '<div>Obecnie brak Waszych zdjęć, prześlij nam jakieś swoje widoki i wrażenia</div>';
@@ -32,23 +20,7 @@
             else
             {
                 echo '<form method="post">';
-                if(isset($_POST['photo']))
-                {
-                    $myboxes = $_POST['photo'];
-                    if(empty($myboxes))
-                    {
-                      echo("You didn't select any boxes.");
-                    }
-                    else
-                    {
-                      $i = count($myboxes);
-                      echo("You selected $i box(es): <br>");
-                      for($j = 0; $j < $i; $j++)
-                      {
-                        echo $myboxes[$j] . "<br>";
-                      }
-                    }
-                }
+
                 foreach($photos as $photo)
                 {
                     echo '<div class=photo>
@@ -61,9 +33,54 @@
                 }
                 echo '<input type="submit" value="Zapisz polubione">
                 </form>';
+            ?>
+
+                
+                <div class="order">
+                    <form method="get" action="previous">
+                        <input type="submit" value="Poprzednia">
+                        <input type="hidden" name="pagetmp" value="<?php echo $page;?>">
+                    </form>
+                    <?php 
+                    echo $page;
+                    ?>
+                    <form method="get" action="next">
+                        <input type="submit" value="Następna">
+                        <input type="hidden" name="pagetmp" value="<?php echo $page;?>">
+                    </form>
+                </div>
+
+                <?php
+                //TODO
+                //Extract it to new function in buiseness
+                //add delter from favorite in new function
+                if(isset($_POST['photo']))
+                {
+                    $myboxes = $_POST['photo'];
+                    if(empty($myboxes))
+                    {
+                    //   echo("You didn't select any boxes.");
+                    }
+                    else
+                    {
+                      $i = count($myboxes);
+                      echo("You selected $i box(es): <br>");
+                      for($j = 0; $j < $i; $j++)
+                      {
+                        //TODO
+                        //save photos to session
+                        $myboxes[$j];
+                        //set checked
+                        echo $myboxes[$j] . "<br>";
+                        if(!isset($_SESSION['favorite']))
+                        {
+                            $_SESSION['favorite']=[];
+                        }
+                      }
+                    }
+                }
             }
 
-            
             ?>
         </main>
         

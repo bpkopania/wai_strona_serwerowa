@@ -28,8 +28,25 @@ function galery(&$model)
     $photos = get_paged_photos($page);
     //$photos = get_all_photos();
     $model['photos'] = $photos;
-    $model['page'] = 1;
+    $model['page'] = $page;
     return 'galery';
+}
+
+function nextPage()
+{
+    $page=$_GET['pagetmp'];
+    $page++;
+    return 'redirect: galery?page='.$page;
+}
+
+function previousPage()
+{
+    $page=$_GET['pagetmp'];
+    if($page>1)
+    {
+        $page--;
+    }
+    return 'redirect: galery?page='.$page;
 }
 
 // function add_favorite()
