@@ -54,31 +54,7 @@
                 //TODO
                 //Extract it to new function in buiseness
                 //add delter from favorite in new function
-                if(isset($_POST['photo']))
-                {
-                    $myboxes = $_POST['photo'];
-                    if(empty($myboxes))
-                    {
-                    //   echo("You didn't select any boxes.");
-                    }
-                    else
-                    {
-                      $i = count($myboxes);
-                      echo("You selected $i box(es): <br>");
-                      for($j = 0; $j < $i; $j++)
-                      {
-                        //TODO
-                        //save photos to session
-                        $myboxes[$j];
-                        //set checked
-                        echo $myboxes[$j] . "<br>";
-                        if(!isset($_SESSION['favorite']))
-                        {
-                            $_SESSION['favorite']=[];
-                        }
-                      }
-                    }
-                }
+                favorite_add();
             }
 
             ?>

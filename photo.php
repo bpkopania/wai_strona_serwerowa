@@ -3,7 +3,11 @@
 
     function upload_photo()
     {
-        $dir = '/var/www/dev/src/web/images/';
+        //TODO
+        //remember to change before prod
+        // chmod 777 -R /var/www/*
+        //zrobic zanim zacznie sie oddawac
+        $dir = '/var/www/prod/src/web/images/';
 
         $file = $_FILES['photo'];
         $status = 0;
@@ -36,13 +40,13 @@
                         resize_image_png($file, $dir, $file_name);
                         add_waterMark_jpg($file, $dir, $file_name);
                     }
+                    store_photo($file_name,$file);
                 }
                 else
                 {
                     $status = 1;
                     //plik za duzy
                 }
-                store_photo($file_name,$file);
             }
             else
             {
@@ -56,7 +60,6 @@
             }
         }
         
-        //resize_image_png($file, $dir, $file_name);
         return $status;
     }
 
@@ -156,7 +159,7 @@
     {
         $db = get_db();
 
-        $pageSize = 3;
+        $pageSize = 3   ;
 
         $opts = [
         'skip' => ($page - 1) * $pageSize,

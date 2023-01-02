@@ -7,18 +7,8 @@ $routing = [
     '/register' => 'registration',
     '/login' => 'logining',
     '/logout' => 'logingout',
-    // 'favorite' => 'add_favorite',
     '/next' => 'nextPage',
-    '/previous' => 'previousPage',
-
-    '/products' => 'products',
-    '/view' => 'product',
-    '/edit' => 'edit',
-    '/delete' => 'delete',
-    '/cart' => 'cart',
-    '/cart/clear' => 'clear_cart',
-    '/cart/add' => 'add_to_cart',
-    
+    '/previous' => 'previousPage',    
     '/galery' => 'galery',
     '/sender' => 'sender',
     '/send' => 'send_to_server'
